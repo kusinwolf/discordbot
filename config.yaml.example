@@ -1,0 +1,38 @@
+app:
+    hash: "#1234"
+    id: 123456789012345
+    name: Bot Name
+    permissions: 84992
+    token: "Token"
+    version: v{Major}.{Minor}.{Patch}
+
+database:
+    username: username
+    password: password
+    host: IP
+    port: Port
+    salt_file: salt file location
+    sqlalchemy_uri: postgresql://{username}:{password}@{host}:{port}/{database}
+
+logging:
+    version: 1
+    disable_existing_loggers: false
+    formatters:
+        base:
+            format: "%(asctime)s [%(levelname)s] %(name)s:%(message)s"
+    handlers:
+        stream:
+            class: logging.StreamHandler
+            formatter: base
+            level: DEBUG
+        errors:
+            class: logging.handlers.RotatingFileHandler
+            level: ERROR
+            formatter: base
+            filename: error.log
+            maxBytes: 52428800
+            backupCount: 20
+            encoding: utf8
+    root:
+        handlers: [stream, errors]
+        level: INFO
